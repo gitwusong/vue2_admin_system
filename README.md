@@ -1,24 +1,4 @@
-# om
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
+vue2elemet管理系统
+###自定义配置
 See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -1,5 +1,5 @@
 module.exports = {
-    lintOnSave: false, // 关闭eslint 校验
+    // lintOnSave: false, // 关闭eslint 校验
     devServer: {
         proxy: {
             '/ajax': {

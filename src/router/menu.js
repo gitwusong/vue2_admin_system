@@ -7,12 +7,11 @@ export const menuList = [
         icon: 'el-icon-lx-home',
         permission:false,
         list: null,
-    },
-    {
+    },{
         menuId: '10',
         parentId: '0',
-        name:'初始案例1',
-        url: '',
+        name:'管理员权限',
+        url: "init1",
         icon: 'el-icon-lx-home',
         permission:false,
         list: [
@@ -31,7 +30,7 @@ export const menuList = [
                 name: '基础表格',
                 url: 'BaseTable',
                 icon: 'el-icon-lx-cascades',
-                permission:false,
+                permission:true,
                 list:null,
             },
             {   
@@ -40,7 +39,7 @@ export const menuList = [
                 name: 'tab选项卡',
                 url: 'Tabs',
                 icon: 'el-icon-lx-copy',
-                permission:false,
+                permission:true,
                 list:null,
             },
             {   
@@ -49,7 +48,7 @@ export const menuList = [
                 name: '基本表单',
                 url: 'BaseForm',
                 icon: '',
-                permission:false,
+                permission:true,
                 list:null,
             },
             {   
@@ -58,7 +57,7 @@ export const menuList = [
                 name: '富文本编辑器',
                 url: 'VueEditor',
                 icon: '',
-                permission:false,
+                permission:true,
                 list:null,
             },
             {   
@@ -67,7 +66,7 @@ export const menuList = [
                 name: 'Markdown编辑器',
                 url: 'Markdown',
                 icon: '',
-                permission:false,
+                permission:true,
                 list:null,
             },
             {   
@@ -76,7 +75,7 @@ export const menuList = [
                 name: '组件上传',
                 url: 'Upload',
                 icon: '',
-                permission:false,
+                permission:true,
                 list:null,
             },
             {   
@@ -85,7 +84,7 @@ export const menuList = [
                 name: 'schart图表',
                 url: 'BaseCharts',
                 icon: '',
-                permission:false,
+                permission:true,
                 list:null,
             },
             {   
@@ -94,15 +93,15 @@ export const menuList = [
                 name: '拖拽列表',
                 url: 'DragList', 
                 icon: '',
-                permission:false,
+                permission:true,
                 list:null,
             },
         ]
     },{
         menuId: '20',
         parentId: '0',
-        name:'初始案例2',
-        url: '',
+        name:'普通权限',
+        url: 'init2',
         icon: 'el-icon-lx-home',
         permission:false,
         list: [
@@ -136,30 +135,12 @@ export const menuList = [
             {
                 menuId: '24',
                 parentId: '20',
-                name: '404',
-                url: '404',
+                name: '自述作者',
+                url: 'Donate',
                 icon: '',
                 permission:false,
                 list: null,
-            },
-            {
-                menuId: '25',
-                parentId: '20',
-                name: '403',
-                url: '403',
-                icon: '',
-                permission:false,
-                list: null,
-            },
-            // {
-            //     menuId: '26',
-            //     parentId: '20',
-            //     name: '自述作者',
-            //     url: 'Donate',
-            //     icon: '',
-            //     permission:false,
-            //     list: null,
-            // },
+            }
         ]
     },
 ]

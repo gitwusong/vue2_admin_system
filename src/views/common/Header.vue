@@ -111,7 +111,7 @@ export default {
     mounted() {
         if (document.body.clientWidth < 1500) {
             this.collapseChage();
-        };
+        }
     }
 };
 </script>

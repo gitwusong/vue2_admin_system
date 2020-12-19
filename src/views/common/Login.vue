@@ -18,8 +18,23 @@
                         <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
                     </el-input>
                 </el-form-item>
-                <div class="login-btn">
-                    <el-button type="primary" @click="submitForm()">登录</el-button>
+                <div class="login-Verify">
+                    <Verify
+                    @success="VerifyStatus = true;submitForm()"
+                    @error="VerifyStatus = false;submitForm()"
+                    @ready="VerifyStatus = false"
+                    type="compute"
+                    width="290px"
+                    height="40px"
+                    fontSize="20px"
+                    :figure="100"
+                    :showButton="true"
+                    :arith="0"
+                    >
+                        <template #check>
+                                <el-button type="primary"  style="width:290px;margin-top:10px;">登录</el-button>
+                        </template>
+                    </Verify>
                 </div>
                 <p class="login-tips">Tips : 用户名和密码随便填。</p>
             </el-form>
@@ -28,8 +43,12 @@
 </template>
 
 <script>
+import Verify from 'vue2-verify'
 import { title } from "@/utils"
 export default {
+    components:{
+        Verify
+    },
     data: function() {
         return {
             param: {
@@ -41,12 +60,14 @@ export default {
                 password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
             },
             title,
+            VerifyStatus:false
         };
     },
     methods: {
         submitForm() {
             this.$refs.login.validate(valid => {
                 if (valid) {
+                    if (!this.VerifyStatus) return this.$message.warning('请输入验证码');
                     this.$message.success('登录成功');
                     localStorage.setItem('ms_username', this.param.username);
                     this.$router.push('/');
@@ -90,14 +111,12 @@ export default {
 .ms-content {
     padding: 30px 30px;
 }
-.login-btn {
+.login-Verify {
     text-align: center;
-}
-.login-btn button {
+    height:120px;
     width: 100%;
-    height: 36px;
-    margin-bottom: 10px;
 }
+
 .login-tips {
     font-size: 12px;
     line-height: 30px;

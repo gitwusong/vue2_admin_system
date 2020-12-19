@@ -12,9 +12,12 @@
         >
             <template v-for="item in items">
                 <template v-if="item.list && item.list.length">
-                    <el-submenu :index="'/'+item.url" :key="item.menuId">
+                    <el-submenu 
+                        :index="'/'+item.url" 
+                        :key="item.menuId"
+                        >
                         <template slot="title">
-                            <i :class="item.icon"></i>
+                            <img :src="item.icon" alt=""/>
                             <span slot="title">{{ item.name }}</span>
                         </template>
                         <template v-for="subItem in item.list">
@@ -22,7 +25,7 @@
                                 v-if="subItem.list"
                                 :index="'/'+subItem.url"
                                 :key="subItem.menuId"
-                            >
+                                >
                                 <template slot="title">{{ subItem.name }}</template>
                                 <el-menu-item
                                     v-for="threeItem in subItem.list"
@@ -40,7 +43,7 @@
                 </template>
                 <template v-else>
                     <el-menu-item :index="'/'+item.url" :key="item.menuId">
-                        <i :class="item.icon"></i>
+                        <img :src="item.icon" alt=""/>
                         <span slot="title">{{ item.name }}</span>
                     </el-menu-item>
                 </template>
@@ -62,7 +65,9 @@ export default {
     },
     computed: {
         onRoutes() {
-            return this.$route.path.replace('/', '');
+            let activeRouter = this.$route.path.replace('/', '')
+                activeRouter = "/"+ activeRouter
+            return activeRouter;
         }
     },
     created() {

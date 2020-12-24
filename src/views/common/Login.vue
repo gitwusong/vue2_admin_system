@@ -1,7 +1,7 @@
 <template>
     <div class="login-wrap">
         <div class="ms-login">
-            <div class="ms-title">{{title.name}}</div>
+            <div class="ms-title">{{logoTitle.title}}</div>
             <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
                     <el-input v-model="param.username" placeholder="username">
@@ -22,7 +22,6 @@
                     <Verify
                     @success="VerifyStatus = true;submitForm()"
                     @error="VerifyStatus = false;submitForm()"
-                    @ready="VerifyStatus = false"
                     type="compute"
                     width="290px"
                     height="40px"
@@ -36,7 +35,6 @@
                         </template>
                     </Verify>
                 </div>
-                <p class="login-tips">Tips : 用户名和密码随便填。</p>
             </el-form>
         </div>
     </div>
@@ -44,7 +42,8 @@
 
 <script>
 import Verify from 'vue2-verify'
-import { title } from "@/utils"
+import { logoTitle } from '@/utils'
+import md5 from 'js-md5'
 export default {
     components:{
         Verify
@@ -53,33 +52,50 @@ export default {
         return {
             param: {
                 username: 'admin',
-                password: '123123',
+                password: '123456'
             },
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-                password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+                password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
             },
-            title,
+            logoTitle,
             VerifyStatus:false
-        };
+        }
     },
     methods: {
         submitForm() {
-            this.$refs.login.validate(valid => {
-                if (valid) {
-                    if (!this.VerifyStatus) return this.$message.warning('请输入验证码');
-                    this.$message.success('登录成功');
-                    localStorage.setItem('ms_username', this.param.username);
-                    this.$router.push('/');
-                } else {
-                    this.$message.error('请输入账号和密码');
-                    console.log('error submit!!');
-                    return false;
+            this.$refs.login.validate(async(valid) => {
+                if (!valid) {
+                    this.$message.warning('请输入正确的账号密码重新登录')
+                    return false
                 }
-            });
-        },
-    },
-};
+                if (!this.VerifyStatus) {
+                    this.$message.warning('验证码输入错误')
+                    return
+                }
+                let dataset = null
+                try {
+                    dataset = await this.$ajax.p_user_login({
+                        user_id:this.param.username,
+                        user_pwd:md5(this.param.password)
+                    })
+                    const error = dataset[0][0]
+                    if (error.code !== 0) {
+                        this.$message.warning(`login failed, error code:${error.code}, error text:${error.text}`)
+                        return
+                    }
+                    sessionStorage.setItem('robotUserName', this.param.username)
+                    sessionStorage.setItem('x-access-token', dataset[1][0].token || '')
+                    this.$router.push('/')
+                } catch (e) {
+                    this.$message.warning(`p_user_login request failed, error message:${e}!`)
+                    return
+                }
+                this.VerifyStatus = false
+            })
+        }
+    }
+}
 </script>
 
 <style scoped>
@@ -113,13 +129,8 @@ export default {
 }
 .login-Verify {
     text-align: center;
-    height:120px;
     width: 100%;
+    height: 120px;
 }
 
-.login-tips {
-    font-size: 12px;
-    line-height: 30px;
-    color: #fff;
-}
 </style>

@@ -1,0 +1,360 @@
+{
+  "scene": {
+    "width": 1920,
+    "height": 1280,
+    "component": "om_scene",
+    "type": "场景",
+    "top": 0,
+    "left": 0,
+    "display": "visible",
+    "uuid": "",
+    "zIndex": 0,
+    "zoom": 1,
+    "rotation": 0,
+    "opacity": 1,
+    "background": "#B2DFEE",
+    "itemReason": "",
+    "transformScale": "1,1"
+  },
+  "items": [
+    {
+      "itemReason": "itemAdjusted",
+      "uuid": "88431c90-f334-11ea-8280-170237298537",
+      "component": "om_image",
+      "type": "图片",
+      "left": 57,
+      "top": 142,
+      "width": 101,
+      "height": 101,
+      "active": false,
+      "display": "visible",
+      "zIndex": 0,
+      "rotation": 0,
+      "opacity": 1,
+      "editable": true,
+      "strokeWidth": 0,
+      "x": 57.05257637165505,
+      "y": 142.182216191105,
+      "w": 100,
+      "h": 100,
+      "href": "timg.jpg"
+    },
+    {
+      "itemReason": "itemAdjusted",
+      "uuid": "6918a3c0-fca4-11ea-ae46-bdd74ee69447",
+      "component": "om_link",
+      "type": "文本",
+      "left": 144,
+      "top": 324,
+      "width": 137,
+      "height": 78,
+      "active": false,
+      "display": "visible",
+      "zIndex": 0,
+      "rotation": 0,
+      "opacity": 1,
+      "editable": true,
+      "fillOpacity": 1,
+      "fillColor": "#eeeeee",
+      "fillGradientColor": "#radial",
+      "fillGradientColorGroup": [
+        {
+          "label": 0,
+          "value": "#00ff00"
+        },
+        {
+          "label": "30",
+          "value": "#000000"
+        },
+        {
+          "label": 100,
+          "value": "#9999ff"
+        }
+      ],
+      "x": 145,
+      "y": 325,
+      "w": 135,
+      "h": 76,
+      "innerHtml": "文本内容111111",
+      "strokeColor": "#c11515",
+      "strokeDasharray": "1,0",
+      "strokeWidth": 1,
+      "fontFamily": "宋体",
+      "fontSize": 14,
+      "fontWeight": "normal",
+      "fontStyle": "normal",
+      "link": "initMapping.om",
+      "r": 14
+    },
+    {
+      "itemReason": "itemAdjusted",
+      "uuid": "8eacfe30-fd7e-11ea-862d-db3b03742109",
+      "component": "om_rect",
+      "type": "矩形",
+      "left": -1,
+      "top": 0,
+      "width": 102,
+      "height": 102,
+      "active": false,
+      "display": "visible",
+      "zIndex": 0,
+      "rotation": 0,
+      "opacity": 1,
+      "editable": true,
+      "x": 0,
+      "y": 1,
+      "w": 100,
+      "h": 100,
+      "r": 5,
+      "fillOpacity": 1,
+      "fillColor": "#123456",
+      "fillGradientColor": "color",
+      "fillGradientColorGroup": [
+        {
+          "label": 0,
+          "value": "#00ff00"
+        },
+        {
+          "label": 100,
+          "value": "#9999ff"
+        }
+      ],
+      "strokeColor": "#ff0000",
+      "strokeDasharray": "1,0",
+      "strokeWidth": 2
+    },
+    {
+      "itemReason": "itemAdjusted",
+      "uuid": "211e01b0-fd7f-11ea-91a6-096c7cdb4df9",
+      "component": "om_rect",
+      "type": "矩形",
+      "left": 1815,
+      "top": 4,
+      "width": 102,
+      "height": 102,
+      "active": false,
+      "display": "visible",
+      "zIndex": 0,
+      "rotation": 0,
+      "opacity": 1,
+      "editable": true,
+      "x": 1816,
+      "y": 5,
+      "w": 100,
+      "h": 100,
+      "r": 5,
+      "fillOpacity": 1,
+      "fillColor": "#123456",
+      "fillGradientColor": "color",
+      "fillGradientColorGroup": [
+        {
+          "label": 0,
+          "value": "#00ff00"
+        },
+        {
+          "label": 100,
+          "value": "#9999ff"
+        }
+      ],
+      "strokeColor": "#ff0000",
+      "strokeDasharray": "1,0",
+      "strokeWidth": 2
+    },
+    {
+      "itemReason": "itemAdjusted",
+      "uuid": "271eb820-fd7f-11ea-91a6-096c7cdb4df9",
+      "component": "om_rect",
+      "type": "矩形",
+      "left": 1818,
+      "top": 1174,
+      "width": 102,
+      "height": 102,
+      "active": false,
+      "display": "visible",
+      "zIndex": 0,
+      "rotation": 0,
+      "opacity": 1,
+      "editable": true,
+      "x": 1819,
+      "y": 1175,
+      "w": 100,
+      "h": 100,
+      "r": 5,
+      "fillOpacity": 1,
+      "fillColor": "#123456",
+      "fillGradientColor": "color",
+      "fillGradientColorGroup": [
+        {
+          "label": 0,
+          "value": "#00ff00"
+        },
+        {
+          "label": 100,
+          "value": "#9999ff"
+        }
+      ],
+      "strokeColor": "#ff0000",
+      "strokeDasharray": "1,0",
+      "strokeWidth": 2
+    },
+    {
+      "itemReason": "itemAdjusted",
+      "uuid": "bbdd8090-fd9d-11ea-80b8-d539edf25f98",
+      "component": "om_rect",
+      "type": "矩形",
+      "left": 0,
+      "top": 1176,
+      "width": 102,
+      "height": 102,
+      "active": false,
+      "display": "visible",
+      "zIndex": 0,
+      "rotation": 0,
+      "opacity": 1,
+      "editable": true,
+      "x": 1,
+      "y": 1177,
+      "w": 100,
+      "h": 100,
+      "r": 5,
+      "fillOpacity": 1,
+      "fillColor": "#123456",
+      "fillGradientColor": "color",
+      "fillGradientColorGroup": [
+        {
+          "label": 0,
+          "value": "#00ff00"
+        },
+        {
+          "label": 100,
+          "value": "#9999ff"
+        }
+      ],
+      "strokeColor": "#ff0000",
+      "strokeDasharray": "1,0",
+      "strokeWidth": 2
+    },
+    {
+      "itemReason": "itemAdjusted",
+      "uuid": "be299370-fd9d-11ea-80b8-d539edf25f98",
+      "component": "om_group",
+      "type": "组合图元",
+      "left": 217,
+      "top": 251,
+      "width": 105,
+      "height": 119,
+      "active": false,
+      "display": "visible",
+      "zIndex": 0,
+      "rotation": 0,
+      "opacity": 1,
+      "editable": true,
+      "subitems": {
+        "name": "子图元",
+        "value": [
+          {
+            "itemReason": "itemAdjusted",
+            "uuid": "bbdd8091-fd9d-11ea-80b8-d539edf25f98",
+            "component": "om_rect",
+            "type": "矩形",
+            "left": 217,
+            "top": 268,
+            "width": 102,
+            "height": 102,
+            "active": true,
+            "display": "visible",
+            "zIndex": 0,
+            "rotation": 0,
+            "opacity": 1,
+            "editable": true,
+            "x": 218,
+            "y": 269,
+            "w": 100,
+            "h": 100,
+            "r": 5,
+            "fillOpacity": 1,
+            "fillColor": "#123456",
+            "fillGradientColor": "color",
+            "fillGradientColorGroup": [
+              {
+                "label": 0,
+                "value": "#00ff00"
+              },
+              {
+                "label": 100,
+                "value": "#9999ff"
+              }
+            ],
+            "strokeColor": "#ff0000",
+            "strokeDasharray": "1,0",
+            "strokeWidth": 2
+          },
+          {
+            "itemReason": "itemAdjusted",
+            "uuid": "bbdd8092-fd9d-11ea-80b8-d539edf25f98",
+            "component": "om_ellipse",
+            "type": "椭圆",
+            "left": 220,
+            "top": 251,
+            "width": 102,
+            "height": 62,
+            "active": true,
+            "display": "visible",
+            "zIndex": 0,
+            "rotation": 0,
+            "opacity": 1,
+            "editable": true,
+            "fill": "#ff0000",
+            "fillOpacity": 1,
+            "fillColor": "#123456",
+            "fillGradientColor": "color",
+            "fillGradientColorGroup": [
+              {
+                "label": 0,
+                "value": "#00ff00"
+              },
+              {
+                "label": 100,
+                "value": "#9999ff"
+              }
+            ],
+            "rx": 50,
+            "ry": 30,
+            "cx": 271,
+            "cy": 282,
+            "strokeColor": "#000000",
+            "strokeDasharray": "1,0",
+            "strokeWidth": 1
+          }
+        ]
+      }
+    }
+  ],
+  "binddata": {
+    "1_2_3_4": [
+      {
+        "uuid": "1",
+        "top": "0,top,value",
+        "left": "0,left,value",
+        "width": "0,width,value",
+        "height": "0,height,value"
+      },
+      {
+        "uuid": "2",
+        "top": "1,top,value",
+        "left": "1,left,value",
+        "width": "1,width,value",
+        "height": "1,height,value"
+      }
+    ],
+    "1_2_3_5": [
+      {
+        "uuid": "3",
+        "top": "3,top,value",
+        "left": "3,left,value",
+        "width": "3,width,value",
+        "height": "3,height,value"
+      }
+    ]
+  }
+}

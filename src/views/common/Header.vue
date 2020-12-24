@@ -1,193 +1,168 @@
 <template>
-    <div class="header">
-        <!-- 折叠按钮 -->
-        <div class="collapse-btn" @click="collapseChage">
-            <i v-if="!collapse" class="el-icon-s-fold"></i>
-            <i v-else class="el-icon-s-unfold"></i>
+    <div class="om_Header">
+        <div class="logo">
+            <div class="logo-img"><img :src="logoTitle.icon" alt=""></div>
+            <div class="logo-name">{{logoTitle.title}}</div>
         </div>
-        <div class="logo">{{title.name}}</div>
-        <div class="header-right">
-            <div class="header-user-con">
-                <!-- 全屏显示 -->
-                <div class="btn-fullscreen" @click="handleFullScreen">
-                    <el-tooltip effect="dark" :content="fullscreen?`取消全屏`:`全屏`" placement="bottom">
-                        <i class="el-icon-rank"></i>
-                    </el-tooltip>
-                </div>
-                <!-- 消息中心 -->
-                <div class="btn-bell">
-                    <el-tooltip
-                        effect="dark"
-                        :content="message?`有${message}条未读消息`:`消息中心`"
-                        placement="bottom"
-                    >
-                        <router-link to="/tabs">
-                            <i class="el-icon-bell"></i>
-                        </router-link>
-                    </el-tooltip>
-                    <span class="btn-bell-badge" v-if="message"></span>
-                </div>
-                <!-- 用户头像 -->
-                <div class="user-avator">
-                    <img src="../../assets/img/img.jpg" />
-                </div>
-                <!-- 用户名下拉菜单 -->
-                <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
-                        {{username}}
-                        <i class="el-icon-caret-bottom"></i>
-                    </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <a href="https://github.com/gitwusong/vue2_admin_system.git" target="_blank">
-                            <el-dropdown-item>项目仓库</el-dropdown-item>
-                        </a>
-                        <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
-            </div>
+        <div class="omMenu">
+            <!--
+                menu-trigger="click"
+                active-text-color="#ead023"
+                text-color="#fff"
+                background-color="#1a62c6"
+            -->
+            <el-menu
+            background-color="#1a62c6"
+            :default-active="$store.state.tags.activeIndex"
+            class="el-menu-demo"
+            unique-opened
+            mode="horizontal"
+            @select="handleSelect"
+            >
+                <om-menu
+                    v-for="(item,index) in menuList"
+                    :key="index"
+                    :items='item'
+                    />
+            </el-menu>
+        </div>
+        <div class="omHeaderUser">
+        <el-dropdown @command="handleCommand" trigger="click">
+            <span class="el-dropdown-link">
+                <span class="title">{{robotUserName}}</span>
+                <i class="icon"><img src="/images/user.png" alt=""></i>
+            </span>
+            <template #dropdown>
+                <el-dropdown-menu>
+                <el-dropdown-item command="editPassword">修改密码</el-dropdown-item>
+                <el-dropdown-item command="SignoOut">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
+            </template>
+        </el-dropdown>
         </div>
     </div>
 </template>
 <script>
-import bus from '../common/bus';
-import { title } from "@/utils"
+import omMenu from './menu'
+import { menuList } from '@/router/menu.js'
+import { logoTitle, loginOut } from '@/utils'
 export default {
+    components:{
+        omMenu
+    },
     data() {
         return {
-            collapse: false,
-            fullscreen: false,
-            name: 'linxin',
-            message: 2,
-            title
-        };
+            userName: '管理员账号',
+            logoTitle,
+            menuList
+        }
     },
     computed: {
-        username() {
-            let username = localStorage.getItem('ms_username');
-            return username ? username : this.name;
+        robotUserName() {
+            const robotUserName = sessionStorage.getItem('robotUserName')
+            return robotUserName || this.userName
         }
     },
     methods: {
-        // 用户名下拉菜单选择事件
         handleCommand(command) {
-            if (command == 'loginout') {
-                localStorage.removeItem('ms_username');
-                this.$router.push('/login');
+            if (command === 'SignoOut') {
+                loginOut()
             }
         },
-        // 侧边栏折叠
-        collapseChage() {
-            this.collapse = !this.collapse;
-            bus.$emit('collapse', this.collapse);
-        },
-        // 全屏事件
-        handleFullScreen() {
-            let element = document.documentElement;
-            if (this.fullscreen) {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitCancelFullScreen) {
-                    document.webkitCancelFullScreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            } else {
-                if (element.requestFullscreen) {
-                    element.requestFullscreen();
-                } else if (element.webkitRequestFullScreen) {
-                    element.webkitRequestFullScreen();
-                } else if (element.mozRequestFullScreen) {
-                    element.mozRequestFullScreen();
-                } else if (element.msRequestFullscreen) {
-                    // IE11
-                    element.msRequestFullscreen();
+        handleSelect(key) {
+            this.$store.state.tags.activeIndex = key
+            const arr = this.$router.options.routes
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].meta.menuId === key) {
+                    this.$router.push(arr[i].path)
                 }
             }
-            this.fullscreen = !this.fullscreen;
-        },
-    },
-    mounted() {
-        if (document.body.clientWidth < 1500) {
-            this.collapseChage();
         }
     }
-};
+}
 </script>
-<style scoped>
-.header {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    height: 70px;
-    font-size: 22px;
-    color: #fff;
-}
-.collapse-btn {
-    float: left;
-    padding: 0 21px;
-    cursor: pointer;
-    line-height: 70px;
-}
-.header .logo {
-    float: left;
-    width: 250px;
-    line-height: 70px;
-}
-.header-right {
-    float: right;
-    padding-right: 50px;
-}
-.header-user-con {
+<style scoped lang="scss">
+@import '@/config.scss';
+.om_Header{
+  width:100%;
+  height:$initMenuHeight;
+  display: flex;
+  background: $initMenuBackground;
+  color:$initMenuColor;
+  .logo{
+    height:100%;
+    width:360px;
+    line-height:$initMenuHeight;
+    font-size:20px;
+    font-weight: 100;
+    // font-family:"楷书";
     display: flex;
-    height: 70px;
-    align-items: center;
+    justify-content: space-around;
+    .logo-img{
+      width:80px;
+      text-align:left;
+      box-sizing:border-box;
+      padding-top:10px;
+      padding-left:10px;
+      position: relative;
+    }
+    .logo-name{
+      width:280px;
+    }
+  }
+  .omMenu{
+    flex:1;
+  }
+  .omHeaderUser {
+    width:100px;
+    height:100%;
+  }
 }
-.btn-fullscreen {
-    transform: rotate(45deg);
-    margin-right: 5px;
-    font-size: 24px;
+.el-dropdown{
+  width:100%;
+  height:$initMenuHeight;
+  color:$initMenuColor;
+  line-height:$initMenuHeight;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
 }
-.btn-bell,
-.btn-fullscreen {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    border-radius: 15px;
-    cursor: pointer;
+.el-dropdown-menu{
+  background: $initMenuBackground;
 }
-.btn-bell-badge {
-    position: absolute;
-    right: 0;
-    top: -2px;
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
-    background: #f56c6c;
-    color: #fff;
+.el-dropdown-menu__item{
+  color:$initMenuColor;
 }
-.btn-bell .el-icon-bell {
-    color: #fff;
+// .el-dropdown__popper[role=tooltip].is-light[role=tooltip] .el-popper__arrow::before{
+//   border: 1px solid $initMenuBackground;
+//   background-color:$initMenuBackground;
+// }
+
+.el-popper[x-placement^=bottom] .popper__arrow::after {
+  border-bottom-color: $initMenuBackground;
 }
-.user-name {
-    margin-left: 10px;
-}
-.user-avator {
-    margin-left: 20px;
-}
-.user-avator img {
-    display: block;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
+// .el-dropdown-menu {
+//   border-color:$initMenuBackground;
+// }
 .el-dropdown-link {
-    color: #fff;
-    cursor: pointer;
-}
-.el-dropdown-menu__item {
-    text-align: center;
+  width:100%;
+  line-height:$initMenuHeight ;
+  color:$initMenuColor;
+  height:$initMenuHeight;
+  outline: none;
+  text-align: center;
+  display: flex;
+  cursor: pointer;
+  .title{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    width:50px;
+  }
+  .icon{
+    flex:1;
+    line-height:$initMenuHeight;
+    text-align:left;
+  }
 }
 </style>

@@ -1,146 +1,121 @@
 export const menuList = [
     {
-        menuId: '0',
-        parentId: '0',
-        name: '系统首页',
-        url: 'home',
-        icon: 'el-icon-lx-home',
-        permission:false,
-        list: null,
-    },{
         menuId: '10',
         parentId: '0',
-        name:'管理员权限',
-        url: "init1",
-        icon: 'el-icon-lx-home',
+        name: '首页',
+        url: 'home',
+        icon: 'icon-shouye',
         permission:false,
-        list: [
-            {   
-                menuId: '11',
-                parentId: '10',
-                name: '自定义图标',
-                url: 'Icon',
-                icon: 'el-icon-lx-home',
-                permission:true,
-                list:null,
-            },
-            {   
-                menuId: '12',
-                parentId: '10',
-                name: '基础表格',
-                url: 'BaseTable',
-                icon: 'el-icon-lx-cascades',
-                permission:true,
-                list:null,
-            },
-            {   
-                menuId: '13',
-                parentId: '10',
-                name: 'tab选项卡',
-                url: 'Tabs',
-                icon: 'el-icon-lx-copy',
-                permission:true,
-                list:null,
-            },
-            {   
-                menuId: '14',
-                parentId: '10',
-                name: '基本表单',
-                url: 'BaseForm',
-                icon: '',
-                permission:true,
-                list:null,
-            },
-            {   
-                menuId: '15',
-                parentId: '10',
-                name: '富文本编辑器',
-                url: 'VueEditor',
-                icon: '',
-                permission:true,
-                list:null,
-            },
-            {   
-                menuId: '16',
-                parentId: '10',
-                name: 'Markdown编辑器',
-                url: 'Markdown',
-                icon: '',
-                permission:true,
-                list:null,
-            },
-            {   
-                menuId: '17',
-                parentId: '10',
-                name: '组件上传',
-                url: 'Upload',
-                icon: '',
-                permission:true,
-                list:null,
-            },
-            {   
-                menuId: '18',
-                parentId: '10',
-                name: 'schart图表',
-                url: 'BaseCharts',
-                icon: '',
-                permission:true,
-                list:null,
-            },
-            {   
-                menuId: '19',
-                parentId: '10',
-                name: '拖拽列表',
-                url: 'DragList', 
-                icon: '',
-                permission:true,
-                list:null,
-            },
-        ]
-    },{
+        list: null
+    }, {
         menuId: '20',
         parentId: '0',
-        name:'普通权限',
-        url: 'init2',
-        icon: 'el-icon-lx-home',
+        name: '机器人管理',
+        url: 'robot',
+        icon: 'icon-robot1',
         permission:false,
         list: [
             {
                 menuId: '21',
                 parentId: '20',
-                name: '国际化',
-                url: 'I18n',
-                icon: '',
+                name: '基本信息',
+                url: 'basic_infor',
+                icon: 'icon-jibenxinxi',
                 permission:false,
-                list: null,
-            },
-            {
+                list: null
+            }, {
                 menuId: '22',
                 parentId: '20',
-                name: '拖拽对话框',
-                url: 'DragDialog',
-                icon: '',
+                name: '远程控制',
+                url: 'control',
+                icon: 'icon-icon',
                 permission:false,
-                list: null,
-            },
-            {
+                list: null
+            }, {
                 menuId: '23',
                 parentId: '20',
-                name: '权限测试',
-                url: 'Permission',
+                name: 'demo',
+                url: 'demo',
                 icon: '',
                 permission:false,
-                list: null,
-            },
-            {
-                menuId: '24',
-                parentId: '20',
-                name: '自述作者',
-                url: 'Donate',
-                icon: '',
-                permission:false,
-                list: null,
+                list: [
+                    {
+                        menuId: '231',
+                        parentId: '23',
+                        name: 'demo1',
+                        url: 'demo1',
+                        icon: '',
+                        permission:false,
+                        list: null
+                    }, {
+                        menuId: '232',
+                        parentId: '23',
+                        name: 'demo2',
+                        url: 'demo2',
+                        icon: '',
+                        permission:false,
+                        list: null
+                    }
+                ]
             }
         ]
-    },
+    }, {
+        menuId: '30',
+        parentId: '0',
+        name: '报表管理',
+        url: 'report',
+        icon: 'icon-baobiaoguanli',
+        permission:false,
+        list: null
+    }, {
+        menuId: '40',
+        parentId: '0',
+        name: '任务管理',
+        url: 'task',
+        icon: 'icon-renwu',
+        permission:false,
+        list: [
+            {
+                menuId: '41',
+                parentId: '40',
+                name: '任务节点',
+                url: 'node',
+                icon: 'icon-binghangrenwujiedian',
+                permission:false,
+                list: null
+            }, {
+                menuId: '42',
+                parentId: '40',
+                name: '任务列表',
+                url: 'list',
+                icon: 'icon-renwuliebiao',
+                permission:false,
+                list: null
+            }, {
+                menuId: '43',
+                parentId: '40',
+                name: '任务计划',
+                url: 'plan',
+                icon: 'icon-renwujihua',
+                permission:false,
+                list: null
+            }, {
+                menuId: '44',
+                parentId: '40',
+                name: '任务调度',
+                url: 'dispatch',
+                icon: 'icon-renwutiaodu',
+                permission:false,
+                list: null
+            }
+        ]
+    }, {
+        menuId: '50',
+        parentId: '0',
+        name: '巡检管理',
+        url: 'xunjian',
+        icon: 'icon-xunjian',
+        permission:false,
+        list: null
+    }
 ]

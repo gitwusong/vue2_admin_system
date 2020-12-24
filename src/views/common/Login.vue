@@ -41,9 +41,8 @@
 </template>
 
 <script>
-import Verify from 'vue2-verify'
 import { logoTitle } from '@/utils'
-import md5 from 'js-md5'
+import Verify from 'vue2-verify'
 export default {
     components:{
         Verify
@@ -52,7 +51,7 @@ export default {
         return {
             param: {
                 username: 'admin',
-                password: '123456'
+                password: '123123'
             },
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -64,34 +63,17 @@ export default {
     },
     methods: {
         submitForm() {
-            this.$refs.login.validate(async(valid) => {
-                if (!valid) {
-                    this.$message.warning('请输入正确的账号密码重新登录')
+            this.$refs.login.validate(valid => {
+                if (valid) {
+                    if (!this.VerifyStatus) return this.$message.warning('请输入验证码')
+                    this.$message.success('登录成功')
+                    sessionStorage.setItem('robotUserName', this.param.username)
+                    this.$router.push('/')
+                } else {
+                    this.$message.error('请输入账号和密码')
+                    console.log('error submit!!')
                     return false
                 }
-                if (!this.VerifyStatus) {
-                    this.$message.warning('验证码输入错误')
-                    return
-                }
-                let dataset = null
-                try {
-                    dataset = await this.$ajax.p_user_login({
-                        user_id:this.param.username,
-                        user_pwd:md5(this.param.password)
-                    })
-                    const error = dataset[0][0]
-                    if (error.code !== 0) {
-                        this.$message.warning(`login failed, error code:${error.code}, error text:${error.text}`)
-                        return
-                    }
-                    sessionStorage.setItem('robotUserName', this.param.username)
-                    sessionStorage.setItem('x-access-token', dataset[1][0].token || '')
-                    this.$router.push('/')
-                } catch (e) {
-                    this.$message.warning(`p_user_login request failed, error message:${e}!`)
-                    return
-                }
-                this.VerifyStatus = false
             })
         }
     }

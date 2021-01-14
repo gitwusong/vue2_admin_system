@@ -63,7 +63,7 @@ export default {
                 this.$store.state.tags.tagsList.push({
                     title: route.meta.name,
                     path: route.fullPath,
-                    name:route.name,
+                    name:name:route.matched[0].components.globalView.name,
                     menuId:route.meta.menuId
                 })
             }
